@@ -1,0 +1,19 @@
+.katex { font-size: 1.05em; }
+
+.ab {
+  margin-bottom: 1%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+  
+.center100 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
