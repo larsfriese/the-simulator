@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route} from "react-router-dom";
+import { HashRouter, Routes, Route, BrowserRouter} from "react-router-dom";
 
 // pages
 import Home from './Home';
@@ -26,9 +26,6 @@ export default function Main() {
 
         <Route path="/home" exact element={<Home />} />
         <Route path="/" exact element={<Home />} />
-        <Route path="" exact element={<Home />} />
-
-        <Route path="*" exact element={<Home />} />
 
         <Route path="/analytical-mechanics/spring-and-rotating-mass" exact element={
           <div className="d-flex" id="wrapper">
