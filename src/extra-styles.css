@@ -1,4 +1,5 @@
 .katex { font-size: 1.05em; }
+.katex { line-height: 1.5 !important; }
 
 .ab {
   margin-bottom: 1%;

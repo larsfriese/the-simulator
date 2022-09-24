@@ -22,6 +22,8 @@ var L = 9; // distance between m1 and m2
 var k = 10; // spring constant
 var m1 = 1;
 var m2 = 1;
+// test comment
+
 var M = m1 + m2;
 var b = (U/L);
 
@@ -223,14 +225,34 @@ export default function SpringAndRotatingMass() {
                                     </p>
                                     <div className="collapse" id="collapseSolution4">
 
-                                        <InlineMath>{'\\text{As you can see the second differential}'}</InlineMath>
-                                        <InlineMath>{'\\text{equation is inhomogenus, which means we will}'}</InlineMath>
-                                        <InlineMath>{'\\text{have to find the solution of the homogenus}'}</InlineMath>
-                                        <InlineMath>{'\\text{equation and a specific solution for the inhomogenus equation.}'}</InlineMath><br /><br />
-                                        <InlineMath>{'z=A sin(w_0 t)+B cos(w_o t)'}</InlineMath><br />
-                                        <InlineMath>{'\\ddot{z}=-w^2t \\implies w=\\sqrt{\\frac{k}{m_1 + m_2}}'}</InlineMath><br /><br />
-                                        <InlineMath>{'\\implies \\boxed{z = A sin(\\sqrt{\\frac{k}{m_1 + m_2}} t)+B cos(\\sqrt{\\frac{k}{m_1 + m_2}} t)}'}</InlineMath><br/>
+                                        <InlineMath>{'\\ddot{z}=-g-\\frac{kz}{M} \\text{(Equation of motion from 2.)} (M=m_1+m_2)'}</InlineMath><br />
+                                        <InlineMath>{'\\lrArr M\\ddot{z}=-Mg-kz'}</InlineMath><br /><br />
+                                        <InlineMath>{'\\text{Because z is inhomogenus, it can be written as } z_{hom} + z_{specific}.'}</InlineMath><br />
+                                        <InlineMath>{'M\\ddot{z}_{hom} + M\\ddot{z}_{sp} + k z_{hom} + k z_{sp} = Mg'}</InlineMath><br />
+                                        <InlineMath>{'\\underbrace{M\\ddot{z}_{hom} + k z_{hom}}_{\\text{=0}}  \\underbrace{M\\ddot{z}_{sp}}_{\\text{=0}} + k z_{sp} = Mg'}</InlineMath><br />
+                                        <InlineMath>{'\\implies z_{sp}(t) = -\\frac{M}{k}g'}</InlineMath><br /><br />
+                                        <InlineMath>{'z(t) = z_{hom}(t) + z_{sp}(t) = A sin(\\sqrt{\\frac{k}{m_1 + m_2}} t)+B cos(\\sqrt{\\frac{k}{m_1 + m_2}} t) + -\\frac{M}{k}g'}</InlineMath><br />
+                                        <InlineMath>{'\\dot{z}(t) = A \\sqrt{\\frac{k}{m_1 + m_2}} cos(\\sqrt{\\frac{k}{m_1 + m_2}} t) + B \\sqrt{\\frac{k}{m_1 + m_2}} sin(\\sqrt{\\frac{k}{m_1 + m_2}} t)'}</InlineMath><br /><br />
                                         
+                                        <InlineMath>{'\\text{We now have an equation for the z position, but still need }'}</InlineMath>
+                                        <InlineMath>{'\\text{a trajectory for the individual masses:}'}</InlineMath><br /><br />
+                                        
+                                        <InlineMath>{'\\vec{r_1(t)} = \\begin{bmatrix} 0 \\cr 0 \\cr z \\end{bmatrix} \\vec{\\dot{r_1(t)}} = \\begin{bmatrix} 0 \\cr 0 \\cr \\dot{z} \\end{bmatrix}'}</InlineMath><br />
+                                        <InlineMath>{'\\vec{r_2(t)} = \\begin{bmatrix} Lcos(\\phi) \\cr Lsin(\\phi) \\cr z \\end{bmatrix} \\vec{\\dot{r_2(t)}} = \\begin{bmatrix} -Lsin(\\phi)\\dot{phi} \\cr Lcos(\\phi)\\dot{phi} \\cr \\dot{z} \\end{bmatrix}'}</InlineMath><br />
+                                        <InlineMath>{'\\vec{\\dot{r_1}}(t)^2=\\dot{z}^2, \\vec{\\dot{r_2}}(t)^2=\\dot{\\phi}^2 L^2+\\dot{z}^2'}</InlineMath><br /><br />
+                                        <InlineMath>{'\\text{Now we just have to input the conditions into the above formulas:}'}</InlineMath><br />
+
+                                        <InlineMath>{'\\vec{r_1}(0) = \\begin{bmatrix} 0 \\cr 0 \\cr z(0) \\end{bmatrix} = \\begin{bmatrix} 0 \\cr 0 \\cr 0 \\end{bmatrix} \\implies B-\\frac{Mg}{k}=0 \\implies \\boxed{B=\\frac{Mg}{k}}'}</InlineMath><br />
+                                        <InlineMath>{'\\dot{\\vec{r_1}}(0) = \\begin{bmatrix} 0 \\cr 0 \\cr \\dot{z}(0) \\end{bmatrix} = \\begin{bmatrix} 0 \\cr 0 \\cr 0 \\end{bmatrix} \\implies A \\sqrt{\\frac{k}{M}}=0 \\implies \\boxed{A=0}'}</InlineMath><br />
+                                        <InlineMath>{'\\implies \\boxed{z(t) = \\frac{Mg}{k}(cos(\\sqrt{\\frac{k}{M}} t)-1)}'}</InlineMath><br /><br />
+
+                                        <InlineMath>{'\\text{Now the same for the trajectory of the second mass:}'}</InlineMath><br />
+                                        <InlineMath>{'\\vec{r_2}(0) = \\begin{bmatrix} Lcos(a+bt) \\cr Lsin(a+bt) \\cr B-\\frac{Mg}{k} \\end{bmatrix} = \\begin{bmatrix} L \\cr 0 \\cr 0 \\end{bmatrix} \\implies \\begin{cases} Lcos(a)=L \\cr Lsin(a)=0 \\end{cases} \\implies \\boxed{a=0}'}</InlineMath><br />
+                                        <InlineMath>{'\\vec{r_2}(0) = \\begin{bmatrix} -Lsin(bt) b \\cr Lcos(bt) b \\cr A \\frac{k}{M} \\end{bmatrix} = \\begin{bmatrix} 0 \\cr u \\cr 0 \\end{bmatrix} \\implies \\begin{cases} sin(bt)=0 \\implies bt = 0 \\cr cos(bt)=\\frac{U}{L b} \\implies 1=\\frac{U}{L b} \\implies \\boxed{b=\\frac{U}{L}} \\cr A=0 \\end{cases} '}</InlineMath><br />
+                                        
+                                        <InlineMath>{'\\implies \\boxed{\\vec{r_2} = \\begin{bmatrix} L cos(bt) \\cr L sin(bt) \\cr \\frac{Mg}{k}(cos(\\sqrt{\\frac{k}{M}} t)-1) \\frac{k}{M} \\end{bmatrix}}'}</InlineMath><br />
+
+
                                     </div>
                                 </div>
                             </div>

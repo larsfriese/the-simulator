@@ -35,6 +35,7 @@ export default function Main() {
         } />
 
         <Route path="/comp" exact element={<Comp />} />
+        <Route path="*" exact element={<PageNotFound />} />
 
       </Routes>
     </BrowserRouter>
